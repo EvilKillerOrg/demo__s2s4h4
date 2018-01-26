@@ -1,0 +1,26 @@
+web环境中启动springIoC容器:
+    应该在web应用被服务器加载时就创建IoC容器:
+    思路是用监听器ServletContextListener的contextInitialized方法中创建IoC容器, 创建后,可以把其放在ServletContext即application域中,就可以在servlet中访问了
+ 	实际上spring提供了一个这样的listener 还可以用spring给的一个工具类获得IoC容器的实例
+ 	servlet中:
+ 	ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(this.getServletContext());
+    System.out.println(ctx.getBean("dataSource").getClass().getName());
+ 	jsp:
+	ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(application);
+	out.println(ctx.getBean("dataSource").getClass().getName());
+
+
+1. Spring 整合 Hibernate 目标:
+ 1). 由IoC容器来生成Hibernate的SessionFactory
+ 2). 让Hibernate使用上Spring的声明式事务
+ 
+
+2. Spring 整合struts2 目标:
+ 1). 是IoC容器来管理Struts2的action
+
+
+	<!-- 这个action的calss用全类名就是struts2自己创建的,现在要从IoC容器中获取(就是spring配置文件中bean的名字) -->
+    <action name="bookAction" class="bookAction"></action>
+
+ 
+ 

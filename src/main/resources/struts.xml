@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+  "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" 
+  "http://struts.apache.org/dtds/struts-2.3.dtd" >
+<struts>
+  <!-- struts2.3.16.3 后要在这配置显式的 value=true (之前的版本默认是true现在是false) 之后才能用action!method -->
+  <constant name="struts.enable.DynamicMethodInvocation" value="true"></constant>
+   
+
+
+  <package name="default" namespace="/" extends="struts-default">
+    
+    <!-- 这个action的calss用全类名就是struts2自己创建的,现在要从IoC容器中获取(就是spring配置文件中bean的名字) -->
+    <action name="bookAction" class="bookAction">
+      <result>/success.jsp</result>
+    </action>
+  </package>
+</struts>
+ 
